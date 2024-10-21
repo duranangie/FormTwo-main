@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DoubleDropdownSubcat } from '../../../../components/shared/DoubleDropdownSubcat';
 import { subcategories16e, subcategories16f, subcategories16g, subcategories16h } from '../../../../../utils/cap1/categoriesp16';
-import { getInitialValuesPage4 } from '../../../../../utils/initialValues';
+import { getInitialValuesPage4, getInitialValuesPage5 } from '../../../../../utils/initialValues';
 import { fileName } from '../../../../../utils/generateFilename';
 import { FormTemplate } from '../../../../../utils/FormInterfaces';
 import { validationSchemaPage5 } from '../../../../../utils/cap1/validationSchemas';
@@ -27,7 +27,7 @@ export const FormPage5 = () => {
     const { saveAllData } = UseSaveData();
     const { surveyId } = useContext(SurveyContext);
     const finalSurveyId = surveyId ?? "defaultSurveyId";
-    const initialValues: FormValues = getInitialValuesPage4();
+    const initialValues: FormValues = getInitialValuesPage5();
 
     return (
         <KeyboardAvoidingView

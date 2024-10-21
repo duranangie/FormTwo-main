@@ -52,8 +52,11 @@ export const useSurveyProcessor = () => {
     const apiUrl = 'http://154.38.171.54:8288/uissurvey-app/api/surveyanswer';
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 seconds timeout
-
+  
     try {
+      // Agregar un console.log para ver la estructura del archivo antes de enviarlo
+      console.log(`Enviando el siguiente contenido para el archivo ${file.name}:`, file.content);
+  
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -62,9 +65,9 @@ export const useSurveyProcessor = () => {
         body: JSON.stringify(file.content),
         signal: controller.signal
       });
-
+  
       clearTimeout(timeoutId);
-
+  
       if (!response.ok) {
         if (response.status === 500) {
           const errorText = await response.text();
@@ -73,7 +76,7 @@ export const useSurveyProcessor = () => {
         }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       const result = await response.json();
       console.log(`Server response for ${file.name}:`, result);
     } catch (err) {
